@@ -1,0 +1,32 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  header {
+    background: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 15vh;
+  }
+
+  section {
+    background: lightgray;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 5rem;
+    width: 100vw;
+    height: 120vh;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+}
