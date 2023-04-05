@@ -19,6 +19,7 @@ if (!$_SESSION['password']) {
     <header>KAERNUNOS</header>
     <section>
         <h1><a href="comment.php">Afficher les commentaires</a></h1>
+        <h1><a href="addComment.php">Ajouter des commentaires</a></h1>
     </section>
 </div>
 </body>

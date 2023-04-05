@@ -29,7 +29,7 @@ if (!$_SESSION['password']) {
 
         while ($comms = $getComments->fetch()) {
             ?>
-            <div><?= $comms['body'] . "<br>";?><a href="banned.php?id=<?= $comms['id'] ?>">Supprimer le commentaire</a><br><br></div>
+            <div><?= $comms['title'] . "<br>" . $comms['body'] . "<br>";?><a href="banned.php?id=<?= $comms['id'] ?>">Supprimer le commentaire</a><br><br></div>
             <?php
         }
         ?>
