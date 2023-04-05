@@ -1,9 +1,14 @@
 <?php
 session_start();
+
+require_once "DbPDO.php";
+$bdd = DbPDO::connect();
+
 if (!$_SESSION['password']) {
     header('location:login.php');
 }
 ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -18,11 +23,18 @@ if (!$_SESSION['password']) {
 <div class="container">
     <header>KAERNUNOS</header>
     <section>
-        <h1><a href="comment.php">Gérer les commentaires</a></h1>
-        <h1><a href="addComment.php">Ajouter des commentaires</a></h1>
-        <h1><a href="displayComment.php">Afficher tous les commentaires</a></h1>
+        <?php
+        $getComments = $bdd->query('SELECT * FROM commentaires');
+
+        while ($comms = $getComments->fetch()) {
+            ?>
+            <div><h1><?= $comms['title']; ?></h1><br>
+                <?= $comms['body']; ?></div><br><br>
+            <hr>
+            <?php
+        }
+        ?>
     </section>
 </div>
 </body>
 </html>
-

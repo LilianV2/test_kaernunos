@@ -8,22 +8,24 @@ if (!$_SESSION['password']) {
     header('location:login.php');
 }
 
-if (isset($_POST['submit'])) {
-    if (!empty($_POST['title']) && !empty($_POST['content'])) {
-        $title = htmlspecialchars($_POST['title']);
-        $content = nl2br(htmlspecialchars($_POST['content']));
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $getId = $_GET['id'];
 
-        $insertComment = $bdd->prepare('INSERT INTO commentaires (title, body) VALUES (? , ?)');
-        $insertComment->execute([$title, $content]);
+    $getComment = $bdd->prepare('SELECT * FROM commentaires WHERE id = ?');
+    $getComment->execute($getId);
 
-        echo "Le commentaire a bien été publié";
-        header('location:displayComment.php');
+    if ($getComment->rowCount() > 0) {
+        $getAllInfos = $getComment->fetch();
+        $title = $getAllInfos['title'];
+        $content = $getAllInfos['content'];
     } else {
-        echo "Veuillez compléter tous les champs";
+        echo "aucun article trouvé";
     }
+} else {
+    echo "aucun id trouvé";
 }
-
 ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -39,7 +41,7 @@ if (isset($_POST['submit'])) {
     <header>KAERNUNOS</header>
     <section>
         <form action="" method="post">
-            <input type="text" name="title">
+            <input type="text" name="title" value="<?= $title;?>">
             <textarea name="content" id="" cols="30" rows="10"></textarea>
             <input type="submit" name="submit">
         </form>
