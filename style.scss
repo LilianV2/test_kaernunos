@@ -1,4 +1,4 @@
-$navColor : #B0AFC9;
+$navColor : rgba(176, 175, 201, 1);
 $linksColor : #2F1160;
 
 * {
@@ -13,65 +13,177 @@ body {
   font-family: sans-serif;
 }
 
-.navbar {
-  padding: 1.5rem;
+nav ul {
+  position: fixed;
+  list-style: none;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   background: $navColor;
-  width: 100vw;
-  a {
-    color: $linksColor;
-  }
-  .logo {
-    color: white;
-    font-size: 1.6rem;
-  }
-  .nav-links {
-    width: 100%;
-    .logo {
-      position: absolute;
-    }
-    ul {
-      display: flex;
-      justify-content: center;
-      gap: 5rem;
-      align-items: center;
-      li.active a {
-        color: white;
-        font-size: 1.2rem;
-      }
-    }
-  }
-  .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 1.2rem;
+  height: 12vh;
+  width: 98.9vw;
+  padding-left: 15vw;
+  padding-right: 15vw;
+  justify-content: space-evenly;
+  z-index: 1000;
+}
+
+nav ul li a#title {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+nav ul li {
+  position: relative;
+  text-align: center;
+}
+
+nav ul li a {
+  display: block;
+  padding: 12px 10px;
+  color: $linksColor;
+  text-decoration: none;
+}
+
+nav ul li:hover > ul.sous-menu {
+  display: block;
+}
+
+nav ul li ul.sous-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: $navColor;
+  padding: 0;
+  margin: 0;
+  width: 12vw;
+}
+
+nav ul li ul.sous-menu li {
+  display: block;
+  background: $navColor;
+  &:hover {
+    font-size: 1.2rem;
   }
 }
 
-.container {
-  header {
-    background: grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 99vw;
-    height: 15vh;
-  }
+nav ul li ul.sous-menu li a {
+  padding: 12px 20px;
+  color: $linksColor;
+  border-bottom: 2px solid rgba(77, 52, 118, 0.2);
+}
 
+nav ul li ul.sous-menu li:hover {
+  background-color: $navColor;
+}
+
+nav ul li ul.sous-menu li ul.sous-sous-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: $navColor;
+  padding: 0;
+  margin: 0;
+  width: 12vw;
+  border-left: 2px solid rgba(77, 52, 118, 0.2);
+}
+
+nav ul li ul.sous-menu li:hover > ul.sous-sous-menu {
+  display: block;
+}
+
+nav ul li ul.sous-menu li ul.sous-sous-menu li {
+  display: block;
+  background-color: $navColor;
+  font-size: 1rem;
+  &:hover {
+    font-size: 1.2rem;
+  }
+}
+
+nav ul li ul.sous-menu li ul.sous-sous-menu li a {
+  padding: 12px 20px;
+  color: $linksColor;
+}
+
+nav ul li ul.sous-menu li ul.sous-sous-menu li:hover {
+  background-color: $navColor;
+}
+
+#container {
+  width: 99vw;
+  height: 1000vh;
+  background: #ededed;
   section {
-    background: lightgray;
+    &.video {
+      width: 100%;
+      height: 10%;
+      background: #e1e1e1;
+    }
+    &.home {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-left: 5rem;
-    width: 99vw;
-    height: 120vh;
-    form {
+      height: 10%;
+      width: 100%;
+      div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        h1 {
+          font-size: 5rem;
+          margin-bottom: 2rem;
+        }
+        &.home-img {
+          background: #d1d1d1;
+        }
+      }
+    }
+    &.home-portfolio {
       display: flex;
+      justify-content: space-around;
       flex-direction: column;
-      gap: 2rem;
+      height: 8%;
+      background: #cecece;
+      div.port-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+          font-size: 5rem;
+        }
+      }
+      div.port-creations {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 40%;
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        div.port-info {
+          width: 15%;
+
+          align-items: center;
+          justify-content: center;
+        }
+        div.port-items {
+          width: 15%;
+          height: 100%;
+          border: 2px solid rgba(141, 141, 141, 0.98);
+          border-radius: 7px;
+          background: rgba(197, 197, 197, 0.93);
+          margin: 0 10px 0 10px;
+          transition: width 300ms ease-in 0ms;
+          &:hover {
+            width: 18%;
+          }
+        }
+      }
     }
   }
 }
