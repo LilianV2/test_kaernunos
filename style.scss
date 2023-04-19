@@ -1,5 +1,11 @@
-$navColor : rgba(176, 175, 201, 1);
-$linksColor : #2F1160;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+$navColor: #B0AFC9;
+$subNavColor : #818094;
+$linksColor: #2F1160;
+$cards: #FBFAFC;
+$mainColor: #ffffff;
+$secColor: #F5F3F8;
 
 * {
   margin: 0;
@@ -7,124 +13,166 @@ $linksColor : #2F1160;
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  color: $linksColor;
+  font-family: Poppins, sans-serif;
 }
 
 body {
   font-family: sans-serif;
 }
 
-nav ul {
-  position: fixed;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  background: $navColor;
-  height: 12vh;
-  width: 98.9vw;
-  padding-left: 15vw;
-  padding-right: 15vw;
-  justify-content: space-evenly;
-  z-index: 1000;
-}
 
-nav ul li a#title {
-  font-size: 2rem;
-  color: #ffffff;
-}
+nav {
+  ul {
+    position: fixed;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background: $navColor;
+    height: 12vh;
+    width: 98.9vw;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    justify-content: space-evenly;
+    z-index: 1000;
 
-nav ul li {
-  position: relative;
-  text-align: center;
-}
+    li {
+      position: relative;
+      text-align: center;
 
-nav ul li a {
-  display: block;
-  padding: 12px 10px;
-  color: $linksColor;
-  text-decoration: none;
-}
+      a {
+        display: block;
+        padding: 12px 10px;
+        color: $linksColor;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition-property: font-size;
+        transition-duration: 500ms;
+        transition-delay: 40ms;
+        &:hover {
+          font-size: 1.5rem;
+        }
 
-nav ul li:hover > ul.sous-menu {
-  display: block;
-}
+        &#title {
+          font-size: 2rem;
+          color: #ffffff;
+          transition-property: font-size;
+          transition-duration: 500ms;
+          transition-delay: 40ms;
+          &:hover {
+            font-size: 2.4rem;
+          }
+        }
+      }
 
-nav ul li ul.sous-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: $navColor;
-  padding: 0;
-  margin: 0;
-  width: 12vw;
-}
+      &:hover {
+        > ul.sous-menu {
+          display: block;
+        }
+        > ul.sous-menu > li > ul.sous-sous-menu {
+          display: none;
+        }
+        > ul.sous-menu > li:hover > ul.sous-sous-menu {
+          display: block;
+        }
+      }
 
-nav ul li ul.sous-menu li {
-  display: block;
-  background: $navColor;
-  &:hover {
-    font-size: 1.2rem;
+      ul.sous-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: $navColor;
+        padding: 0;
+        margin: 0;
+        width: 14vw;
+
+        li {
+          display: block;
+          background: $navColor;
+          font-size: 1.1rem;
+          transition-property: font-size;
+          transition-duration: 100ms;
+          transition-delay: 40ms;
+          &:hover {
+            font-size: 1.2rem;
+          }
+          &:first-child {
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+          }
+          &:last-child {
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+            border-bottom-color: $navColor;
+          }
+
+          a {
+            padding: 12px 20px;
+            color: $linksColor;
+            border-bottom: 2px solid rgba(77, 52, 118, 0.2);
+          }
+
+          &:hover {
+            background-color: $navColor;
+          }
+
+          ul.sous-sous-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: $navColor;
+            padding: 0;
+            margin: 0;
+            width: 15vw;
+            border-left: 2px solid rgba(77, 52, 118, 0.2);
+
+            li {
+              display: block;
+              background-color: $navColor;
+
+              a {
+                padding: 12px 20px;
+                color: $linksColor;
+              }
+
+              &:hover {
+                background-color: $navColor;
+              }
+            }
+
+            &:hover {
+              > ul.sous-sous-menu {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-nav ul li ul.sous-menu li a {
-  padding: 12px 20px;
-  color: $linksColor;
-  border-bottom: 2px solid rgba(77, 52, 118, 0.2);
-}
 
-nav ul li ul.sous-menu li:hover {
-  background-color: $navColor;
-}
-
-nav ul li ul.sous-menu li ul.sous-sous-menu {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: $navColor;
-  padding: 0;
-  margin: 0;
-  width: 12vw;
-  border-left: 2px solid rgba(77, 52, 118, 0.2);
-}
-
-nav ul li ul.sous-menu li:hover > ul.sous-sous-menu {
-  display: block;
-}
-
-nav ul li ul.sous-menu li ul.sous-sous-menu li {
-  display: block;
-  background-color: $navColor;
-  font-size: 1rem;
-  &:hover {
-    font-size: 1.2rem;
-  }
-}
-
-nav ul li ul.sous-menu li ul.sous-sous-menu li a {
-  padding: 12px 20px;
-  color: $linksColor;
-}
-
-nav ul li ul.sous-menu li ul.sous-sous-menu li:hover {
-  background-color: $navColor;
-}
 
 #container {
   width: 99vw;
-  height: 1000vh;
-  background: #ededed;
+  height: 500vh;
+  background: $mainColor;
+
   section {
     &.video {
       width: 100%;
-      height: 10%;
-      background: #e1e1e1;
+      height: 20%;
+      background: $secColor;
     }
+
     &.home {
-    display: flex;
-      height: 10%;
+      display: flex;
+      height: 20%;
       width: 100%;
+
       div {
         width: 50%;
         display: flex;
@@ -132,29 +180,35 @@ nav ul li ul.sous-menu li ul.sous-sous-menu li:hover {
         justify-content: center;
         flex-direction: column;
         text-align: center;
+
         h1 {
           font-size: 5rem;
           margin-bottom: 2rem;
         }
+
         &.home-img {
-          background: #d1d1d1;
+          background: $cards;
         }
       }
     }
+
     &.home-portfolio {
       display: flex;
       justify-content: space-around;
       flex-direction: column;
-      height: 8%;
-      background: #cecece;
+      height: 16%;
+      background: $mainColor;
+
       div.port-title {
         display: flex;
         flex-direction: column;
         align-items: center;
+
         h1 {
           font-size: 5rem;
         }
       }
+
       div.port-creations {
         overflow: hidden;
         display: flex;
@@ -165,31 +219,154 @@ nav ul li ul.sous-menu li ul.sous-sous-menu li:hover {
         width: 100%;
         padding-right: 1rem;
         padding-left: 1rem;
+
         div.port-info {
           width: 15%;
-
           align-items: center;
           justify-content: center;
         }
+
         div.port-items {
           width: 15%;
           height: 100%;
-          border: 2px solid rgba(141, 141, 141, 0.98);
           border-radius: 7px;
-          background: rgba(197, 197, 197, 0.93);
+          background: $cards;
           margin: 0 10px 0 10px;
           transition: width 300ms ease-in 0ms;
+
           &:hover {
             width: 18%;
           }
         }
       }
     }
-  }
-}
 
-@media screen and (max-width: 900px){
-  .nav-links{
-    display: none;
+    &.info-home {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20%;
+      width: 99vw;
+      background: $secColor;
+
+      .info-home-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 80%;
+        height: 80%;
+
+        .info-cards {
+          display: flex;
+          padding: 4rem 8rem 2rem 8rem;
+          flex-direction: column;
+          width: 50%;
+          height: 50%;
+
+          .fa-solid {
+            font-size: 2rem;
+            padding-bottom: 1rem;
+            align-self: self-start;
+          }
+        }
+      }
+    }
+  }
+
+  .home-contact {
+    height: 10%;
+    width: 99vw;
+    background: $mainColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      padding-bottom: 2rem;
+    }
+
+    button {
+      width: 15%;
+      height: 12%;
+      background: $mainColor;
+      border: 3px solid $linksColor;
+      font-size: 1.2rem;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+  }
+
+  footer {
+    height: 15%;
+    background: $mainColor;
+
+    section {
+      height: 80%;
+      width: 98vw;
+      background: $secColor;
+      display: flex;
+
+      div.logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45%;
+        height: 95%;
+      }
+
+      div.footer-list {
+        display: flex;
+        justify-content: center;
+        padding-top: 6rem;
+        padding-right: 3rem;
+        gap: 3.5rem;
+        width: 50%;
+        height: 100%;
+
+        ul {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          font-size: 1.1rem;
+          color: $linksColor;
+          background: $secColor;
+
+          li {
+            padding: 1.4rem;
+
+            &:first-child {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    .last-footer {
+      height: 20%;
+      background: $mainColor;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 1rem;
+      color: $linksColor;
+      p i.fa-brands {
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: 2rem;
+        transition-property: font-size;
+        transition-duration: 1s;
+        transition-delay: 140ms;
+        &:hover {
+          font-size: 3rem;
+        }
+      }
+    }
   }
 }
